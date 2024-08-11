@@ -3,23 +3,35 @@ from dataclasses import dataclass
 
 @dataclass
 class Vertex3f:
-    x: float
-    y: float
-    z: float
+    _x: float
+    _y: float
+    _z: float
 
     def __eq__(self, other: object) -> bool:
         if isinstance(other, Vertex3f):
-            return self.x == other.x and self.y == other.y and self.z == other.z
+            return self._x == other._x and self._y == other._y and self._z == other._z
         return False
 
     def __hash__(self) -> int:
-        return hash((self.x, self.y, self.z))
+        return hash((self._x, self._y, self._z))
 
     def clone(self) -> "Vertex3f":
-        return Vertex3f(self.x, self.y, self.z)
+        return Vertex3f(self._x, self._y, self._z)
 
     def translated(self, v: "Vertex3f") -> "Vertex3f":
-        return Vertex3f(self.x + v.x, self.y + v.y, self.z + v.z)
+        return Vertex3f(self._x + v._x, self._y + v._y, self._z + v._z)
 
     def multiplied(self, mult: float) -> "Vertex3f":
-        return Vertex3f(self.x * mult, self.y * mult, self.z * mult)
+        return Vertex3f(self._x * mult, self._y * mult, self._z * mult)
+
+    @property
+    def x(self) -> float:
+        return self._x
+
+    @property
+    def y(self) -> float:
+        return self._y
+
+    @property
+    def z(self) -> float:
+        return self._z
