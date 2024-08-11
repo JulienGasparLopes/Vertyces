@@ -5,8 +5,7 @@ description = "Python package to manage simple math objects"
 authors = ["JulienGL <jgl94@free.fr>"]
 readme = "README.md"
 packages = [
-  {include = "vertyces"},
-  {include = "vertyces/py.typed"},
+  {include = "vertyces"}
 ]
 
 [tool.poetry.dependencies]
