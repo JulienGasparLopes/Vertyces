@@ -4,6 +4,10 @@ version = "0.1.0"
 description = "Python package to manage simple math objects"
 authors = ["JulienGL <jgl94@free.fr>"]
 readme = "README.md"
+packages = [
+  {include = "vertyces"},
+  {include = "vertyces/py.typed"},
+]
 
 [tool.poetry.dependencies]
 python = "^3.12"
