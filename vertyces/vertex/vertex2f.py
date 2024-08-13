@@ -41,4 +41,4 @@ class Vertex2f:
 
     @property
     def norm(self) -> float:
-        return (self._x**2 + self._y**2) ** 0.5
+        return float((self._x**2 + self._y**2) ** 0.5)

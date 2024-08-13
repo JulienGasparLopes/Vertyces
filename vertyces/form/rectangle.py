@@ -1,12 +1,12 @@
 from typing import List
 
-from vertex.vertex2f import Vertex2f
+from vertyces.vertex.vertex2f import Vertex2f
 
 
 class Rectangle:
     _p1: Vertex2f
     _p2: Vertex2f
-    _bounds = Vertex2f
+    _bounds: Vertex2f
 
     def __init__(self, position: Vertex2f, bounds: Vertex2f) -> None:
         self._p1 = position.clone()

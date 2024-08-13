@@ -1,6 +1,6 @@
 from typing import Generic, List, TypeVar
 
-from vertex.vertex2f import Vertex2f
+from vertyces.vertex.vertex2f import Vertex2f
 
 T = TypeVar("T")
 
@@ -22,10 +22,10 @@ class Matrix(Generic[T]):
         self._values = initial_value
 
     def get(self, position: Vertex2f) -> T:
-        return self._values[position.y][position.x]
+        return self._values[int(position.y)][int(position.x)]
 
     def set(self, position: Vertex2f, value: T) -> None:
-        self._values[position.y][position.x] = value
+        self._values[int(position.y)][int(position.x)] = value
 
     def get_size(self) -> tuple[int, int]:
         if len(self._values) == 0:

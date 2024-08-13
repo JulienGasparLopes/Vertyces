@@ -1,4 +1,4 @@
-from vertex.vertex3f import Vertex3f
+from vertyces.vertex.vertex3f import Vertex3f
 
 WHITE = Vertex3f(255, 255, 255)
 BLACK = Vertex3f(0, 0, 0)
