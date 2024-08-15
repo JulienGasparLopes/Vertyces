@@ -42,3 +42,7 @@ class Vertex2f:
     @property
     def norm(self) -> float:
         return float((self._x**2 + self._y**2) ** 0.5)
+
+    @property
+    def unit_vertex(self) -> "Vertex2f":
+        return self.multiplied(1 / self.norm)

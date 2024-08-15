@@ -35,3 +35,11 @@ class Vertex3f:
     @property
     def z(self) -> float:
         return self._z
+
+    @property
+    def norm(self) -> float:
+        return float((self._x**2 + self._y**2 + self._z**2) ** 0.5)
+
+    @property
+    def unit_vertex(self) -> "Vertex3f":
+        return self.multiplied(1 / self.norm)
