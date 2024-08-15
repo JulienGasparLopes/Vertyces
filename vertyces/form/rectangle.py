@@ -44,6 +44,9 @@ class Rectangle:
             collides = collides or self.contains(point, strict)
         return collides
 
+    def translated(self, v: Vertex2f) -> "Rectangle":
+        return Rectangle(self._p1.translated(v), self._bounds)
+
     def __eq__(self, other: object) -> bool:
         if isinstance(other, Rectangle):
             return self._p1 == other._p1 and self._p2 == other._p2
