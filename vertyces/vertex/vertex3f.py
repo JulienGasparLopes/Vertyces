@@ -42,4 +42,6 @@ class Vertex3f:
 
     @property
     def unit_vertex(self) -> "Vertex3f":
-        return self.multiplied(1 / self.norm)
+        if norm := self.norm != 0:
+            return self.multiplied(1 / self.norm)
+        return Vertex3f(0, 0, 0)
