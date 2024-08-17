@@ -51,3 +51,11 @@ class Rectangle:
         if isinstance(other, Rectangle):
             return self._p1 == other._p1 and self._p2 == other._p2
         return False
+
+    @property
+    def position(self) -> Vertex2f:
+        return self._p1.clone()
+
+    @property
+    def bounds(self) -> Vertex2f:
+        return self._bounds.clone()
