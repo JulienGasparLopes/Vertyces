@@ -5,13 +5,14 @@ from vertyces.vertex.vertex2f import Vertex2f
 
 class Rectangle:
     _p1: Vertex2f
-    _p2: Vertex2f
-    _bounds: Vertex2f
+    _dimensions: Vertex2f
 
-    def __init__(self, position: Vertex2f, bounds: Vertex2f) -> None:
+    _p2: Vertex2f
+
+    def __init__(self, position: Vertex2f, dimensions: Vertex2f) -> None:
         self._p1 = position.clone()
-        self._p2 = position.translated(bounds)
-        self._bounds = bounds
+        self._p2 = position.translated(dimensions)
+        self._dimensions = dimensions.clone()
 
     @staticmethod
     def from_points(p1: Vertex2f, p2: Vertex2f) -> "Rectangle":
@@ -20,9 +21,9 @@ class Rectangle:
     def get_all_points(self) -> List[Vertex2f]:
         return [
             self._p1.clone(),
-            self._p1.translated(Vertex2f(self._bounds.x, 0)),
+            self._p1.translated(Vertex2f(self._dimensions.x, 0)),
             self._p2.clone(),
-            self._p1.translated(Vertex2f(0, self._bounds.y)),
+            self._p1.translated(Vertex2f(0, self._dimensions.y)),
         ]
 
     def contains(self, point: Vertex2f, strict: bool = True) -> bool:
@@ -45,7 +46,10 @@ class Rectangle:
         return collides
 
     def translated(self, v: Vertex2f) -> "Rectangle":
-        return Rectangle(self._p1.translated(v), self._bounds)
+        return Rectangle(self._p1.translated(v), self._dimensions)
+
+    def at_position(self, position: Vertex2f) -> "Rectangle":
+        return Rectangle(position, self._dimensions)
 
     def __eq__(self, other: object) -> bool:
         if isinstance(other, Rectangle):
@@ -57,5 +61,5 @@ class Rectangle:
         return self._p1.clone()
 
     @property
-    def bounds(self) -> Vertex2f:
-        return self._bounds.clone()
+    def dimensions(self) -> Vertex2f:
+        return self._dimensions.clone()
