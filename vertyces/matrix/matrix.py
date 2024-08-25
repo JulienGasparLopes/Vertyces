@@ -27,13 +27,15 @@ class Matrix(Generic[T]):
     def set(self, position: Vertex2f, value: T) -> None:
         self._values[int(position.y)][int(position.x)] = value
 
-    def get_size(self) -> tuple[int, int]:
+    def get_dimensions(self) -> Vertex2f:
         if len(self._values) == 0:
-            return 0, 0
-        return len(self._values[0]), len(self._values)
+            return Vertex2f(0, 0)
+        return Vertex2f(len(self._values[0]), len(self._values))
 
     def rotate(self, clockwise: bool = True) -> None:
-        width, height = self.get_size()
+        dimensions = self.get_dimensions()
+        width = int(dimensions.x)
+        height = int(dimensions.y)
         new_values: List[List[T]] = []
         if clockwise:
             for x in range(width):
@@ -65,6 +67,14 @@ class Matrix(Generic[T]):
             for x in range(len(self._values[0])):
                 values.append((self._values[y][x], Vertex2f(x, y)))
         return values
+
+    def sub_matrix(self, top_left: Vertex2f, bottom_right: Vertex2f) -> "Matrix[T]":
+        new_values: List[List[T]] = []
+        for y in range(int(top_left.y), int(bottom_right.y) + 1):
+            new_values.append([])
+            for x in range(int(top_left.x), int(bottom_right.x) + 1):
+                new_values[y - int(top_left.y)].append(self._values[y][x])
+        return Matrix(new_values)
 
     def __str__(self) -> str:
         repr = ""
